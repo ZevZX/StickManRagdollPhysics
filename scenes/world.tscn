@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cda646gbmb5ku"]
+
+[ext_resource type="PackedScene" uid="uid://n40c2ryg00dg" path="res://scenes/stickman.tscn" id="1_73hip"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gpjsd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6wij"]
+size = Vector2(2320.5, 382.5)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_73hip")]
+position = Vector2(824, 154)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_gpjsd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1021.75, 1126.25)
+shape = SubResource("RectangleShape2D_p6wij")
