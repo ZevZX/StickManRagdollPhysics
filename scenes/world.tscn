@@ -1,22 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://cda646gbmb5ku"]
+[gd_scene load_steps=3 format=3 uid="uid://de5xb1q71o7ri"]
 
-[ext_resource type="PackedScene" uid="uid://dn4cnuppy8klh" path="res://scenes/ragdoll.tscn" id="1_5i5xp"]
+[ext_resource type="PackedScene" uid="uid://d0pkkcj5jhfco" path="res://scenes/Ragdoll.tscn" id="1_xqw5b"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gpjsd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggrjj"]
+size = Vector2(1919, 224)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6wij"]
-size = Vector2(2320.5, 382.5)
+[node name="Game" type="Node2D"]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="Node2D" parent="." instance=ExtResource("1_5i5xp")]
-position = Vector2(983, 528)
+[node name="Ragdoll" parent="." instance=ExtResource("1_xqw5b")]
+position = Vector2(964, 358)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(2, 440)
 collision_layer = 3
 collision_mask = 3
-physics_material_override = SubResource("PhysicsMaterial_gpjsd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1021.75, 1126.25)
-shape = SubResource("RectangleShape2D_p6wij")
+position = Vector2(958.5, 526)
+shape = SubResource("RectangleShape2D_ggrjj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
