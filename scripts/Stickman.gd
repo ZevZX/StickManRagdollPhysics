@@ -1,7 +1,8 @@
-extends Node2D
+extends CharacterBody2D
 
 var power = 500
-const JUMP_VELOCITY = -400.0
+const jump = 400.0
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Limb Controls
 var limbs = []
 
@@ -11,7 +12,7 @@ func _ready():
 
 func _physics_process(delta):
 	var axis = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	var axis_y = Input.get_action_strength("ui_up") - Input.get_action_strength("ui_down")
+	var axis_y = - Input.get_action_strength("ui_down")
 	$Limbs/Torso.apply_impulse(Vector2.RIGHT * axis * power, Vector2.ZERO)
 	$Limbs/Torso.apply_impulse(Vector2.UP * axis_y * power, Vector2.ZERO)
 		
