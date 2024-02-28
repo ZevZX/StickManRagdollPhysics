@@ -2,7 +2,8 @@ extends Node2D
 
 var power = 500
 const JUMP_VELOCITY = 20
-var can_jump = true
+var can_jump = false
+var can_jumpnumber = 0
 # Limb Controls
 var limbs = []
 
@@ -14,8 +15,7 @@ func _physics_process(delta):
 	var axis = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var axis_y = - Input.get_action_strength("ui_down")
 	$Limbs/Torso.apply_impulse(Vector2.RIGHT * axis * power, Vector2.ZERO)
-	$Limbs/Torso.apply_impulse(Vector2.UP * axis_y * power, Vector2.ZERO)
-	
+	$Limbs/Torso.apply_impulse(Vector2.UP * 5 * axis_y * power, Vector2.ZERO)
 	# Jumping
 	if Input.is_action_just_pressed("ui_up") and can_jump:
 		$Limbs/Torso.apply_impulse(Vector2.UP * JUMP_VELOCITY * power, Vector2.ZERO)
@@ -37,22 +37,15 @@ func _physics_process(delta):
 			var applied_force = limb.force;
 			limb.angular_velocity = lerp_angle(current_angle, limb.desired_angle, (limb.force) * delta);
 
-func _on_left_lower_leg_body_entered(body):
-	print('a')
+func _on_area_2d_body_entered(body):
 	if body.is_in_group("ground"):
 		can_jump = true
+		print('wall jump on')
+		can_jumpnumber += 1
 
-func _on_left_lower_leg_body_exited(body):
-	print('b')
+func _on_area_2d_body_exited(body):
 	if body.is_in_group("ground"):
-		can_jump = false
-
-func _on_right_lower_leg_body_entered(body):
-	print('c')
-	if body.is_in_group("ground"):
-		can_jump = true
-
-func _on_right_lower_leg_body_exited(body):
-	print('d')
-	if body.is_in_group("ground"):
-		can_jump = false
+		can_jumpnumber -= 1
+		if can_jumpnumber == 0:
+			can_jump = false
+			print('wall jump off')

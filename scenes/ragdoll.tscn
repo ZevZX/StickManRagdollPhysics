@@ -42,6 +42,11 @@ texture = ExtResource("1_3c51n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/Torso"]
 shape = SubResource("CapsuleShape2D_jbfog")
 
+[node name="Area2D" type="Area2D" parent="Limbs/Torso"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/Torso/Area2D"]
+shape = SubResource("CapsuleShape2D_jbfog")
+
 [node name="Head" type="RigidBody2D" parent="Limbs"]
 position = Vector2(0, -39)
 script = ExtResource("3_wmh32")
@@ -56,6 +61,8 @@ shape = SubResource("CircleShape2D_gu0m0")
 
 [node name="LeftUpperArm" type="RigidBody2D" parent="Limbs"]
 position = Vector2(-16, -27)
+collision_layer = 2
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/LeftUpperArm"]
 scale = Vector2(0.08, 0.08)
@@ -67,6 +74,8 @@ shape = SubResource("CapsuleShape2D_h281v")
 
 [node name="LeftLowerArm" type="RigidBody2D" parent="Limbs"]
 position = Vector2(-38, -27)
+collision_layer = 2
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/LeftLowerArm"]
 scale = Vector2(0.08, 0.08)
@@ -76,8 +85,16 @@ texture = ExtResource("3_q4ikt")
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_h281v")
 
+[node name="Area2D" type="Area2D" parent="Limbs/LeftLowerArm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/LeftLowerArm/Area2D"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_h281v")
+
 [node name="LeftHand" type="RigidBody2D" parent="Limbs"]
 position = Vector2(-50, -27)
+collision_layer = 2
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/LeftHand"]
 scale = Vector2(0.07, 0.07)
@@ -88,6 +105,8 @@ shape = SubResource("CircleShape2D_206ns")
 
 [node name="RightUpperArm" type="RigidBody2D" parent="Limbs"]
 position = Vector2(16, -27)
+collision_layer = 4
+collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/RightUpperArm"]
 scale = Vector2(0.08, 0.08)
@@ -99,6 +118,8 @@ shape = SubResource("CapsuleShape2D_h281v")
 
 [node name="RightLowerArm" type="RigidBody2D" parent="Limbs"]
 position = Vector2(37, -27)
+collision_layer = 4
+collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/RightLowerArm"]
 scale = Vector2(0.08, 0.08)
@@ -108,8 +129,16 @@ texture = ExtResource("3_q4ikt")
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_h281v")
 
+[node name="Area2D" type="Area2D" parent="Limbs/RightLowerArm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/RightLowerArm/Area2D"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_h281v")
+
 [node name="RightHand" type="RigidBody2D" parent="Limbs"]
 position = Vector2(49, -27)
+collision_layer = 4
+collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/RightHand"]
 scale = Vector2(0.07, 0.07)
@@ -122,7 +151,7 @@ shape = SubResource("CircleShape2D_206ns")
 position = Vector2(0, 33)
 rotation = 1.57079
 script = ExtResource("3_wmh32")
-desired_angle = 2.356
+desired_angle = 1.75
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/RightLegUpper"]
 scale = Vector2(0.08, 0.08)
@@ -136,7 +165,7 @@ shape = SubResource("CapsuleShape2D_h281v")
 position = Vector2(0, 55)
 rotation = 1.57079
 script = ExtResource("3_wmh32")
-desired_angle = 2.356
+desired_angle = 1.75
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/RightLowerLeg"]
 scale = Vector2(0.08, 0.08)
@@ -146,13 +175,20 @@ texture = ExtResource("3_q4ikt")
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_h281v")
 
+[node name="Area2D" type="Area2D" parent="Limbs/RightLowerLeg"]
+scale = Vector2(1.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/RightLowerLeg/Area2D"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_h281v")
+
 [node name="LeftUpperLeg" type="RigidBody2D" parent="Limbs"]
 position = Vector2(0, 33)
 rotation = 1.57079
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_wmh32")
-desired_angle = 0.786
+desired_angle = 1.25
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/LeftUpperLeg"]
 scale = Vector2(0.08, 0.08)
@@ -168,13 +204,20 @@ rotation = 1.57079
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_wmh32")
-desired_angle = 0.786
+desired_angle = 1.25
 
 [node name="Sprite2D" type="Sprite2D" parent="Limbs/LeftLowerLeg"]
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("3_q4ikt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/LeftLowerLeg"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_h281v")
+
+[node name="Area2D" type="Area2D" parent="Limbs/LeftLowerLeg"]
+scale = Vector2(1.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/LeftLowerLeg/Area2D"]
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_h281v")
 
@@ -233,7 +276,13 @@ position = Vector2(-48, -27)
 node_a = NodePath("../Limbs/LeftLowerArm")
 node_b = NodePath("../Limbs/LeftHand")
 
-[connection signal="body_entered" from="Limbs/RightLowerLeg" to="." method="_on_right_lower_leg_body_entered"]
-[connection signal="body_exited" from="Limbs/RightLowerLeg" to="." method="_on_right_lower_leg_body_exited"]
-[connection signal="body_entered" from="Limbs/LeftLowerLeg" to="." method="_on_left_lower_leg_body_entered"]
-[connection signal="body_exited" from="Limbs/LeftLowerLeg" to="." method="_on_left_lower_leg_body_exited"]
+[connection signal="body_entered" from="Limbs/Torso/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Limbs/Torso/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Limbs/LeftLowerArm/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Limbs/LeftLowerArm/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Limbs/RightLowerArm/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Limbs/RightLowerArm/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Limbs/RightLowerLeg/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Limbs/RightLowerLeg/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Limbs/LeftLowerLeg/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Limbs/LeftLowerLeg/Area2D" to="." method="_on_area_2d_body_exited"]
