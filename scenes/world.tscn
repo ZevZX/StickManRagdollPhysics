@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://de5xb1q71o7ri"]
 
-[ext_resource type="PackedScene" uid="uid://b43apwn2csll4" path="res://scenes/stickman.tscn" id="1_yj1cv"]
+[ext_resource type="PackedScene" uid="uid://d0pkkcj5jhfco" path="res://scenes/ragdoll.tscn" id="1_mged6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggrjj"]
 size = Vector2(1919, 224)
 
 [node name="Game" type="Node2D"]
 
-[node name="Stickman" parent="." instance=ExtResource("1_yj1cv")]
-position = Vector2(870, 669)
+[node name="Ragdoll" parent="." instance=ExtResource("1_mged6")]
+position = Vector2(990, 653)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["ground"]]
 position = Vector2(2, 440)
@@ -19,8 +19,4 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["ground"]]
 position = Vector2(958.5, 526)
 shape = SubResource("RectangleShape2D_ggrjj")
-metadata/_edit_lock_ = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
 metadata/_edit_lock_ = true

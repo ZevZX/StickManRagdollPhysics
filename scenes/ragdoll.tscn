@@ -232,3 +232,8 @@ node_b = NodePath("../Limbs/LeftLowerArm")
 position = Vector2(-48, -27)
 node_a = NodePath("../Limbs/LeftLowerArm")
 node_b = NodePath("../Limbs/LeftHand")
+
+[connection signal="body_entered" from="Limbs/RightLowerLeg" to="." method="_on_right_lower_leg_body_entered"]
+[connection signal="body_exited" from="Limbs/RightLowerLeg" to="." method="_on_right_lower_leg_body_exited"]
+[connection signal="body_entered" from="Limbs/LeftLowerLeg" to="." method="_on_left_lower_leg_body_entered"]
+[connection signal="body_exited" from="Limbs/LeftLowerLeg" to="." method="_on_left_lower_leg_body_exited"]
