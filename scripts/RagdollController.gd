@@ -1,10 +1,10 @@
 extends Node2D
 
-var power = 300
-const JUMP_VELOCITY = 33
-var can_jump = false
-var can_jumpnumber = 0
-var can_jumplimit = 0
+var moveSpeed = 300
+const jumpHeight = 9900
+var jumpAble = false
+var jumpNumber = 0
+var jumpLimit = 0
 
 # Limb Controls
 var limbs = []
@@ -16,13 +16,13 @@ func _ready():
 func _physics_process(delta):
 	var axis = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var axis_y = - Input.get_action_strength("ui_down")
-	$Limbs/Torso.apply_impulse(Vector2.RIGHT * axis * power, Vector2.ZERO)
-	$Limbs/Torso.apply_impulse(Vector2.UP * 5 * axis_y * power, Vector2.ZERO)
+	$Limbs/Torso.apply_impulse(Vector2.RIGHT * axis * moveSpeed, Vector2.ZERO)
+	$Limbs/Torso.apply_impulse(Vector2.UP * 5 * axis_y * moveSpeed, Vector2.ZERO)
 	# Jumping
-	if Input.is_action_just_pressed("ui_up") and can_jump and can_jumplimit < 2:
-		$Limbs/Torso.apply_impulse(Vector2.UP * JUMP_VELOCITY * power, Vector2.ZERO)
-		can_jumplimit += 1
-		print(can_jumplimit)
+	if Input.is_action_just_pressed("ui_up") and jumpAble and jumpLimit < 2:
+		$Limbs/Torso.apply_impulse(Vector2.UP * jumpHeight, Vector2.ZERO)
+		jumpLimit += 1
+		print(jumpLimit)
 
 	# Loop Over All Limbs
 	for limb in $Limbs.get_children():
@@ -43,15 +43,15 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("ground"):
-		can_jump = true
-		print('wall jump on')
-		can_jumpnumber += 1
+		jumpAble = true
+		print('can jump')
+		jumpNumber += 1
 
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("ground"):
-		can_jumpnumber -= 1
-		if can_jumpnumber == 0:
-			can_jump = false
-			print('wall jump off')
-			if can_jumplimit == 2:
-				can_jumplimit -= 2
+		jumpNumber -= 1
+		if jumpNumber == 0:
+			jumpAble = false
+			print('cant jump')
+			if jumpLimit == 2:
+				jumpLimit -= 2

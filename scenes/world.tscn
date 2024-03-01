@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d0pkkcj5jhfco" path="res://scenes/ragdoll.tscn" id="1_mged6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggrjj"]
-size = Vector2(2223, 1643)
+size = Vector2(595.5, 438.5)
 
 [node name="Game" type="Node2D"]
 
@@ -15,14 +15,26 @@ position = Vector2(2, 440)
 collision_layer = 7
 collision_mask = 7
 
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(920, -312)
+shape = SubResource("RectangleShape2D_ggrjj")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1057, 1460)
+position = Vector2(957, 598)
 shape = SubResource("RectangleShape2D_ggrjj")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-654, -152)
+position = Vector2(1614, 216)
 shape = SubResource("RectangleShape2D_ggrjj")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2639, -171)
+position = Vector2(179, 343)
+shape = SubResource("RectangleShape2D_ggrjj")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3741, -42)
+shape = SubResource("RectangleShape2D_ggrjj")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2857, 43)
 shape = SubResource("RectangleShape2D_ggrjj")

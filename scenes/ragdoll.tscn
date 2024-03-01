@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0pkkcj5jhfco"]
+[gd_scene load_steps=13 format=3 uid="uid://d0pkkcj5jhfco"]
 
 [ext_resource type="Shader" path="res://resources/shaders/Ragdoll.gdshader" id="1_3boyi"]
 [ext_resource type="Texture2D" uid="uid://by4ayyxbahge7" path="res://assets/Torso.png" id="1_3c51n"]
@@ -24,6 +24,10 @@ height = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_206ns"]
 radius = 4.12311
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uw5jj"]
+radius = 4.0
+height = 41.6667
 
 [node name="Ragdoll" type="Node2D"]
 script = ExtResource("1_n81eu")
@@ -103,6 +107,11 @@ texture = ExtResource("2_nbk44")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/LeftHand"]
 shape = SubResource("CircleShape2D_206ns")
 
+[node name="Area2D" type="Area2D" parent="Limbs/LeftHand"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/LeftHand/Area2D"]
+shape = SubResource("CircleShape2D_206ns")
+
 [node name="RightUpperArm" type="RigidBody2D" parent="Limbs"]
 position = Vector2(16, -27)
 collision_layer = 4
@@ -147,17 +156,22 @@ texture = ExtResource("2_nbk44")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/RightHand"]
 shape = SubResource("CircleShape2D_206ns")
 
-[node name="RightLegUpper" type="RigidBody2D" parent="Limbs"]
+[node name="Area2D" type="Area2D" parent="Limbs/RightHand"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/RightHand/Area2D"]
+shape = SubResource("CircleShape2D_206ns")
+
+[node name="RightUpperLeg" type="RigidBody2D" parent="Limbs"]
 position = Vector2(0, 33)
 rotation = 1.57079
 script = ExtResource("3_wmh32")
 desired_angle = 1.75
 
-[node name="Sprite2D" type="Sprite2D" parent="Limbs/RightLegUpper"]
+[node name="Sprite2D" type="Sprite2D" parent="Limbs/RightUpperLeg"]
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("3_q4ikt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/RightLegUpper"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/RightUpperLeg"]
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_h281v")
 
@@ -180,7 +194,7 @@ scale = Vector2(1.2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/RightLowerLeg/Area2D"]
 rotation = -1.57079
-shape = SubResource("CapsuleShape2D_h281v")
+shape = SubResource("CapsuleShape2D_uw5jj")
 
 [node name="LeftUpperLeg" type="RigidBody2D" parent="Limbs"]
 position = Vector2(0, 33)
@@ -219,22 +233,22 @@ scale = Vector2(1.2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/LeftLowerLeg/Area2D"]
 rotation = -1.57079
-shape = SubResource("CapsuleShape2D_h281v")
+shape = SubResource("CapsuleShape2D_uw5jj")
 
 [node name="TorsoToHead" type="PinJoint2D" parent="."]
 position = Vector2(0, -30)
 node_a = NodePath("../Limbs/Torso")
 node_b = NodePath("../Limbs/Head")
 
-[node name="TorsoToUpperLeftLeg" type="PinJoint2D" parent="."]
+[node name="TorsoToLeftUpperLeg" type="PinJoint2D" parent="."]
 position = Vector2(0, 22)
 node_a = NodePath("../Limbs/Torso")
 node_b = NodePath("../Limbs/LeftUpperLeg")
 
-[node name="TorsoToUpperRightLeg" type="PinJoint2D" parent="."]
+[node name="TorsoToRightUpperLeg" type="PinJoint2D" parent="."]
 position = Vector2(0, 22)
 node_a = NodePath("../Limbs/Torso")
-node_b = NodePath("../Limbs/RightLegUpper")
+node_b = NodePath("../Limbs/RightUpperLeg")
 
 [node name="LeftUpperLegToLeftLowerLeg" type="PinJoint2D" parent="."]
 position = Vector2(0, 44)
@@ -243,35 +257,35 @@ node_b = NodePath("../Limbs/LeftLowerLeg")
 
 [node name="RightUpperLegToRightLowerLeg" type="PinJoint2D" parent="."]
 position = Vector2(0, 44)
-node_a = NodePath("../Limbs/RightLegUpper")
+node_a = NodePath("../Limbs/RightUpperLeg")
 node_b = NodePath("../Limbs/RightLowerLeg")
 
-[node name="TorsoToLeftArmUpper" type="PinJoint2D" parent="."]
+[node name="TorsoToLeftUpperArm" type="PinJoint2D" parent="."]
 position = Vector2(-4, -27)
 node_a = NodePath("../Limbs/Torso")
 node_b = NodePath("../Limbs/LeftUpperArm")
 
-[node name="TorsoToRightArmUpper" type="PinJoint2D" parent="."]
+[node name="TorsoToRightUpperArm" type="PinJoint2D" parent="."]
 position = Vector2(5, -27)
 node_a = NodePath("../Limbs/Torso")
 node_b = NodePath("../Limbs/RightUpperArm")
 
-[node name="RightArmUpperToRightArmLower" type="PinJoint2D" parent="."]
+[node name="RightUpperArmToRightLowerArm" type="PinJoint2D" parent="."]
 position = Vector2(26, -27)
 node_a = NodePath("../Limbs/RightUpperArm")
 node_b = NodePath("../Limbs/RightLowerArm")
 
-[node name="RightArmLowerToRightHand" type="PinJoint2D" parent="."]
+[node name="RightLowerArmToRightHand" type="PinJoint2D" parent="."]
 position = Vector2(47, -27)
 node_a = NodePath("../Limbs/RightLowerArm")
 node_b = NodePath("../Limbs/RightHand")
 
-[node name="LeftArmUpperToLeftArmLower" type="PinJoint2D" parent="."]
+[node name="LeftUpperArmToLeftLowerArm" type="PinJoint2D" parent="."]
 position = Vector2(-26, -27)
 node_a = NodePath("../Limbs/LeftUpperArm")
 node_b = NodePath("../Limbs/LeftLowerArm")
 
-[node name="LeftArmLowerToHead" type="PinJoint2D" parent="."]
+[node name="LeftLowerArmToHead" type="PinJoint2D" parent="."]
 position = Vector2(-48, -27)
 node_a = NodePath("../Limbs/LeftLowerArm")
 node_b = NodePath("../Limbs/LeftHand")
@@ -280,8 +294,12 @@ node_b = NodePath("../Limbs/LeftHand")
 [connection signal="body_exited" from="Limbs/Torso/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Limbs/LeftLowerArm/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Limbs/LeftLowerArm/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Limbs/LeftHand/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Limbs/LeftHand/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Limbs/RightLowerArm/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Limbs/RightLowerArm/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Limbs/RightHand/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Limbs/RightHand/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Limbs/RightLowerLeg/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Limbs/RightLowerLeg/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Limbs/LeftLowerLeg/Area2D" to="." method="_on_area_2d_body_entered"]
